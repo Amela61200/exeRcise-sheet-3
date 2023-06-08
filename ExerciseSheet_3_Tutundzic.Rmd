@@ -106,9 +106,7 @@ Link: <https://opendata.muenchen.de/dataset/vornamen-von-neugeborenen>
 a)  Download the data for both years and track it in git. For small
     datasets like these adding them to git is not a problem. Done!
 
-b)  class(vornamen_2021\$Anzahl)
-
-c)  Load the data for both years into R. Check the type of the count
+b)  Load the data for both years into R. Check the type of the count
     variable ("Anzahl") and look into the data to determine why it is
     not numeric? Fix the problem in an appropriate manner, it is OK if
     some of the counts are inaccurate because of this. Explain your
@@ -130,7 +128,26 @@ c)  Load the data for both years into R. Check the type of the count
     class(vornamen_2022$Anzahl)
     ```
 
-d)  Calculate the total number of babies born in Munich in 2022
+    Having a look into the date we can see the reason why the variable
+    "Anzahl" was not numeric. Some of the values have been missing or
+    simply invalid. That means that if there are missing or invalid
+    values in the variable, R may tend to interpret the variable as a
+    character. This happens because R doesn't support missing values for
+    numeric variables and automatically treats them as characters if
+    they encounter missing or invalid values. For solving this problem
+    we first assigned/ converted specific numeric codes to factors using
+    the as.factor() function. After that we used the "as.numeric()"
+    function to change it to numeric.
+
+    **Repercussions:**
+
+    -   Data Loss
+    -   Loss of accuracy
+    -   Modification of statistical analyses(especially for descriptive
+        statistics such as mean, standard deviation, which are
+        calculated for numerical data)
+
+c)  Calculate the total number of babies born in Munich in 2022
     and 2021. Which year had the bigger baby-boom?
 
     ```{r}
@@ -154,7 +171,7 @@ d)  Calculate the total number of babies born in Munich in 2022
 
     ```
 
-e)  Add a new column `year` to both datasets which holds the correct
+d)  Add a new column `year` to both datasets which holds the correct
     year for each.
 
     ```{r}
@@ -162,14 +179,14 @@ e)  Add a new column `year` to both datasets which holds the correct
     vornamen_2021$year <- 2021
     ```
 
-f)  Combine both datasets into one using `bind_rows()`.
+e)  Combine both datasets into one using `bind_rows()`.
 
     ```{r}
     library(dplyr)
     vornamen_combined <- bind_rows(vornamen_2022, vornamen_2021)
     ```
 
-g)  Combine the counts for same names to determine the most popular
+f)  Combine the counts for same names to determine the most popular
     names across both years. Print out the top 10 names in a nicely
     formatted table for both years. Include a table caption.
 
