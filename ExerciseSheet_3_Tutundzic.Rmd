@@ -93,7 +93,7 @@ b)  Push your code to this new repository by copying and executing the
     `…or push an existing repository from the command line`. Done!
 
 c)  Regularly push your latest changes to GitHub again and especially do
-    so when you are finished with this sheet.
+    so when you are finished with this sheet. Done!
 
 ## Exercise 3: Baby-Names in Munich (4.5 Points)
 
