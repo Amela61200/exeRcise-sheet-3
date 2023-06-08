@@ -4,11 +4,11 @@ subtitle: "Fortgeschrittene Statistische Software für NF - SS 2022/23"
 author: "Tutundzic, Amela (12404691)"
 date: "`r Sys.Date()`"
 output:
-  distill::distill_article:
-    self_contained: no
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
+  distill::distill_article:
+    self_contained: no
 editor_options: 
   markdown: 
     wrap: 72
@@ -172,6 +172,21 @@ f)  Combine both datasets into one using `bind_rows()`.
 g)  Combine the counts for same names to determine the most popular
     names across both years. Print out the top 10 names in a nicely
     formatted table for both years. Include a table caption.
+
+    ```{r}
+    library(dplyr)
+    library(knitr)
+
+    most_popular_names <- vornamen_combined %>%
+      group_by(Vorname) %>%
+      summarize(Total_Count = sum(Anzahl)) %>%
+      arrange(desc(Total_Count)) %>%
+      head(10)
+
+    cat("Top 10 Popular Names in Munich (2022 and 2021):\n")
+    print(kable(most_popular_names, caption = "Most Popular Names in Munich (2022 and 2021)", align = "c"))
+
+    ```
 
 ## Exercise 4: Chat GPT + apply (3 points)
 
