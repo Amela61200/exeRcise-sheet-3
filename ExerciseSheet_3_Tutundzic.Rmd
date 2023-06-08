@@ -106,7 +106,9 @@ Link: <https://opendata.muenchen.de/dataset/vornamen-von-neugeborenen>
 a)  Download the data for both years and track it in git. For small
     datasets like these adding them to git is not a problem. Done!
 
-b)  Load the data for both years into R. Check the type of the count
+b)  class(vornamen_2021\$Anzahl)
+
+c)  Load the data for both years into R. Check the type of the count
     variable ("Anzahl") and look into the data to determine why it is
     not numeric? Fix the problem in an appropriate manner, it is OK if
     some of the counts are inaccurate because of this. Explain your
@@ -115,17 +117,32 @@ b)  Load the data for both years into R. Check the type of the count
     ```{r}
     vornamen_2021 <- read.csv(file.path("data", "vornamen_2021.csv"))
     vornamen_2022 <- read.csv(file.path("data", "open_data_portal_2022.csv"))
+
+    class(vornamen_2021$Anzahl)
+    class(vornamen_2022$Anzahl)
+
+    vornamen_2021$Anzahl <- as.factor(vornamen_2021$Anzahl)
+    vornamen_2021$Anzahl <- as.numeric(vornamen_2021$Anzahl)
+    class(vornamen_2021$Anzahl)
+
+    vornamen_2022$Anzahl <- as.factor(vornamen_2022$Anzahl)
+    vornamen_2022$Anzahl <- as.numeric(vornamen_2022$Anzahl)
+    class(vornamen_2022$Anzahl)
+
+
+
+
     ```
 
-c)  Calculate the total number of babies born in Munich in 2022
+d)  Calculate the total number of babies born in Munich in 2022
     and 2021. Which year had the bigger baby-boom?
 
-d)  Add a new column `year` to both datasets which holds the correct
+e)  Add a new column `year` to both datasets which holds the correct
     year for each.
 
-e)  Combine both datasets into one using `bind_rows()`.
+f)  Combine both datasets into one using `bind_rows()`.
 
-f)  Combine the counts for same names to determine the most popular
+g)  Combine the counts for same names to determine the most popular
     names across both years. Print out the top 10 names in a nicely
     formatted table for both years. Include a table caption.
 
