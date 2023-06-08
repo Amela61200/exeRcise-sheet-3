@@ -257,7 +257,43 @@ b)  Using ChatGPT try to understand what the rapply() function does.
     Create an easy example with mock data where the function is used and
     explain it in your words.
 
+The `rapply()` function in R is used to recursively apply a
+function to elements of a list or nested list structure. It is
+particularly useful when you have complex nested data structures and want to apply a function to all elements, including nested elements,in a flexible and convenient way.
+
+    ```{r}
+    directory <- list(
+      file1 = "data.txt",
+      file2 = "image.jpg",
+      folder1 = list(
+        file3 = "script.R",
+        file4 = "document.docx"
+      ),
+      folder2 = list(
+        file5 = "notes.txt",
+        folder3 = list(
+          file6 = "report.pdf"
+        )
+      )
+    )
+
+    char_count <- function(x) {
+      if (is.character(x)) {
+        return(nchar(x))
+      } else {
+        return(0)
+      }
+    }
+
+
+    result <- rapply(directory, char_count, how = "unlist")
+
+    print(result)
+
+    ```
+We can see here my example with mock data that illustrates the "rapply()"-function. We can see a nested list called directory, which represents a directory structure containing files and folders. Important to say is that the elements in the list can be either a character string or another nested list. The usage of the "rapply()-function" is here to apply the char_count() function recursively to all elements in the directory list.
+At the end we can see for example that "file1" has 8 characters, "file2" has 9 characters or that "file4" has 11 characters.
 ## Final Note
 
 Make sure to push all your commits and changes to GitHub before
-submittining the exercise sheet.
+submitting the exercise sheet.
