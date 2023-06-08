@@ -227,6 +227,32 @@ column_means \<- lapply(tax_data$$, -1$$, 2, mean)
 
 column_means
 
+```{r}
+tax_data <- data.frame(
+  Name = c("Munich GmbH", "ABC Inc.", "Backpacks 1980", "Bavarian Circus"),
+  Tax_2019 = c(5000, 4000, 6000, 3500),
+  Tax_2020 = c(4800, 4200, 5800, 3700),
+  Tax_2021 = c(5200, 3800, 5900, 3400)
+)
+
+
+column_means <- apply(tax_data[, -1], 2, mean)
+
+row_means <- apply(tax_data[, -1], 1, mean)
+
+column_means
+row_means
+```
+
+My prompts that i used to solve this exercise with ChatGPT was just
+copying the sub-task and adding it to the chat and ChatGPT automatically
+gave me the solution. The right function here that should have been used
+is the "apply-function" and not the "lapply()"-function. The lapply()
+function is used to apply a function to each element of a list or
+vector. It is not designed to work directly with data frames or
+matrices. In the original code, lapply() was being used on tax_data\$\$,
+which is not a valid syntax
+
 b)  Using ChatGPT try to understand what the rapply() function does.
     Create an easy example with mock data where the function is used and
     explain it in your words.
